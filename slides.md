@@ -361,9 +361,9 @@ class: text-center
 <div class="p-5 bg-orange-500/5 rounded border border-orange-500/20">
 <p class="text-sm font-bold text-orange-400 mb-3">🚀 次のステップ（今後の展望）</p>
 <ul class="text-[12px] space-y-2 opacity-90">
-<li><b>手動打点の自動化:</b> AI/画像処理による計測点抽出の実装。</li>
-<li><b>設計工程の支援:</b> 織りの「行・羽」だけでなく、設計・仕立てに不可欠な「尺・寸」への対応。</li>
-<li><b>技術の継承:</b> アナログ図面のデジタル化によるアーカイブ。</li>
+<li><b>実測値（cm）計算の自動化:</b> 「羽数：長さ」の比例計算を統合し、設計・仕立てまでをカバー。</li>
+<li><b>AIによる図面認識:</b> 手動打点データを教師データとし、完全自動計測へのアップグレード。</li>
+<li><b>現場環境への適応:</b> 低照度下での画像補正アルゴリズムの強化。</li>
 </ul>
 </div>
 
@@ -379,3 +379,7 @@ class: text-center
     <a href="https://ca01971172.github.io/iyo-kasuri-calc/" target="_blank">https://ca01971172.github.io/iyo-kasuri-calc/</a>
   </p>
 </div>
+
+<!--
+
+-->
