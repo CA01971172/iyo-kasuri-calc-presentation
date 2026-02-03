@@ -338,3 +338,44 @@ mdc: true
 
 ご清聴ありがとうございました。
 -->
+
+---
+layout: center
+class: text-center
+---
+
+# Thank you!
+### 研究の総括と質疑応答
+
+<div class="grid grid-cols-2 gap-8 mt-8 text-left">
+
+<div class="p-5 bg-blue-500/5 rounded border border-blue-500/20">
+<p class="text-sm font-bold text-blue-400 mb-3">✅ 本研究で実現したこと（振り返り）</p>
+<ul class="text-[12px] space-y-2 opacity-90">
+<li><b>心理的障壁の除去:</b> ミスを恐れず新しい幾何学模様に挑める「二重チェック」体制。</li>
+<li><b>身体的負担の解消:</b> マス目の凝視から解放される「デジタル・ルーペ」の実装。</li>
+<li><b>永続的な支援:</b> 開発者が離れた後も使い続けられる「完全サーバーレス設計」。</li>
+</ul>
+</div>
+
+<div class="p-5 bg-orange-500/5 rounded border border-orange-500/20">
+<p class="text-sm font-bold text-orange-400 mb-3">🚀 次のステップ（今後の展望）</p>
+<ul class="text-[12px] space-y-2 opacity-90">
+<li><b>手動打点の自動化:</b> AI/画像処理による計測点抽出の実装。</li>
+<li><b>設計工程の支援:</b> 織りの「行・羽」だけでなく、設計・仕立てに不可欠な「尺・寸」への対応。</li>
+<li><b>技術の継承:</b> アナログ図面のデジタル化によるアーカイブ。</li>
+</ul>
+</div>
+
+</div>
+
+<div class="mt-10 flex flex-col items-center">
+  <div class="bg-white p-1 rounded mb-2 shadow-lg">
+      <a href="https://ca01971172.github.io/iyo-kasuri-calc/" target="_blank">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://ca01971172.github.io/iyo-kasuri-calc/" width="80" height="80" />
+      </a>
+  </div>
+  <p class="text-[10px] opacity-60">実機デモURL:
+    <a href="https://ca01971172.github.io/iyo-kasuri-calc/" target="_blank">https://ca01971172.github.io/iyo-kasuri-calc/</a>
+  </p>
+</div>
