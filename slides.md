@@ -19,10 +19,11 @@ mdc: true
 <div class="abs-bot m-12 w-full flex justify-between pr-24 border-t border-gray-500/30 pt-4">
   <div class="text-left">
     <div class="text-sm opacity-60 italic">Kawahara e-Business College</div>
-    <div class="text-base">河原電子ビジネス専門学校</div>
+    <div class="text-xl">河原電子ビジネス専門学校</div>
   </div>
+
   <div class="text-right">
     <div class="text-sm opacity-60 italic">Presented by</div>
-    <div class="text-lg font-bold">村上 聖音</div>
+    <div class="text-2xl font-bold">村上 聖音</div>
   </div>
 </div>
