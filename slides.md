@@ -117,3 +117,114 @@ mdc: true
 【補足：本システムの提供目的】  
 「もし間違えていたら、これまでの努力が無駄になる」という不安は、創作のブレーキになります。本システムは、スマホで撮るだけでその「数え作業」と「計算」を瞬時に行い、職人が「これで大丈夫だ」と確信を持って次の工程に進める、セカンドオピニオンとしての役割を担います。
 -->
+
+---
+
+# 3. 解決策：伊予絣計測支援ツール
+### 運用負荷を最小化した、PWAによる計測アプローチ
+
+<div class="grid grid-cols-2 gap-10">
+
+<div>
+
+- **デバイスを選ばない「PWA」構成**
+  - インストール不要、GitHub Pagesで完結。
+  - 上京後の保守性を考慮したサーバーレス設計。
+- **直感的な「3ステップ」計測**
+  1. **撮影**: 手書きの図面をタブレットで撮影。
+  2. **補正**: 射影変換による歪み補正。
+  3. **計測**: 任意の点を選択し「行・羽」を算出。
+- **データ出力と保存**
+  - PDF出力による現場での参照
+  - JSONによる中断保存
+
+</div>
+
+<div>
+
+<div class="p-3 bg-blue-500/10 border border-blue-500/50 rounded">
+<p class="text-sm font-bold text-blue-400">🛠 技術的アプローチ</p>
+<ul class="text-xs list-disc ml-4 space-y-1 mt-2">
+<li><b>射影変換の実装</b>：斜めからの撮影でも、方眼紙の四隅を指定することで正確な平面座標を復元。</li>
+<li><b>低負荷・高レスポンス</b>：クライアントサイド（JS）のみで計算を完結させ、低スペックなタブレットでも動作を担保。</li>
+</ul>
+</div>
+
+</div>
+
+</div>
+
+<v-click>
+<div class="mt-4 p-4 bg-green-500/10 border-l-4 border-green-500 text-sm">
+<b>こだわりの設計思想：</b><br>
+自動認識による「過剰な自動化」をあえて避け、職人が測りたい場所を確実に測れる
+<b>「セミオート」な使い心地</b>と、永続的な利用に耐えるシンプルな構成を両立。
+</div>
+</v-click>
+
+<!--
+【解決策：システムの概要と構成】  
+課題を解決するために開発したのが、ブラウザから手軽に利用できるPWA「伊予絣計測支援ツール」です。
+ このシステムは、私の「上京」という個人的なライフイベントを背景とした、明確な設計思想を持っています。それは「クラウドを一切介さず、サーバーレスで完結させること」です。GitHub Pagesのみで動作させることで、将来にわたる保守コストを極限まで抑え、祖母がいつでも使い続けられる環境を優先しました。
+
+【技術的アプローチ：射影変換と計測】  
+システムの核となるのは、ホモグラフィ変換を用いた座標補正です。タブレットで図面を撮影した際、どうしても発生する「斜めの歪み」を、画面上の四隅を指定するだけで真上からの正確な図面データへと補正します。
+計測に関しても、あえてOpenCVによる全自動認識は採用しませんでした。低スペックなタブレットでの動作安定性を重視し、かつ「熟練の職人が必要な箇所だけを確認したい」というニーズに応えるため、タップした任意の座標を「行(ゆき)・羽(わ)」という伊予絣の単位へ瞬時に換算するインターフェースにこだわりました。
+
+【運用と今後】  
+計測結果はPDFとして出力して現場で持ち歩くことができるほか、JSON形式での保存機能により、大規模な図面の計測も途中で中断して再開することが可能です。
+「高度なAI」を載せることよりも、祖母の生活に寄り添い、確実に、かつ長く使い続けられる「道具」としての完成度を追求しました。
+-->
+
+---
+
+# 4. 実行画面：直感的な計測プロセス
+### 職人の「測りたい」に即座に応えるUI
+
+<div class="grid grid-cols-3 gap-4">
+
+<div class="text-center">
+<p class="text-xs font-bold mb-2">① 歪み補正（射影変換）</p>
+<img src="/calibration.png" class="h-60 rounded border border-white/10 object-contain mx-auto bg-black/20" />
+<p class="text-[10px] mt-2 opacity-70">四隅を指定し、方眼紙を正対させる</p>
+</div>
+
+<div class="text-center">
+<p class="text-xs font-bold mb-2">② 任意地点の計測</p>
+<img src="/measurement.png" class="h-60 rounded border border-white/10 object-contain mx-auto bg-black/20" />
+<p class="text-[10px] mt-2 opacity-70">タップした箇所の「行・羽」を算出</p>
+</div>
+
+<div class="text-center">
+<p class="text-xs font-bold mb-2">③ 計測データの活用</p>
+<img src="/output.png" class="h-60 rounded border border-white/10 object-contain mx-auto bg-black/20" />
+<p class="text-[10px] mt-2 opacity-70">現場へ持ち出し、または作業再開</p>
+</div>
+
+</div>
+
+<div class="flex justify-between items-start">
+  <div class="p-3 bg-blue-500/10 border-l-4 border-blue-500 text-xs">
+    <b>技術スタック：</b> React / TypeScript / Canvas API / jsPDF
+    <span class="pl-4">GitHub Pagesによる静的配信で、永続的な利用を実現</span>
+  </div>
+  
+  <div class="text-right">
+    <div class="bg-white p-1 rounded inline-block">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://ca01971172.github.io/iyo-kasuri-calc/" width="60" height="60" />
+    </div>
+  </div>
+</div>
+
+<!--
+【実演への繋ぎ：システムの動き】  
+実際の操作画面についてご説明します。 システムは非常にシンプルで、まずは図面を撮影し、その画像の四隅をタップして指定します。
+これにより、斜めに撮られた写真であっても、数学的な補正、いわゆる射影変換を行い、正確な平面データとして復元します。
+
+次に、その図面上の「知りたい点」をタップするだけで、伊予絣の単位である「行」と「羽」が瞬時に計算されます。これまでは方眼紙のマス目を一つずつ数えていた作業が、たった一回のタップで完結します。
+
+さらに、これらのデータはPDFとして書き出しが可能です。これにより、タブレットを汚しやすい染めや織りの現場にも、紙のデータとして持ち込むことができます。
+
+【デモ開始】  
+それでは、実際にどのように動作するのか、ブラウザ上で実演いたします。
+-->
