@@ -1,6 +1,6 @@
 ---
 theme: seriph
-background: https://images.unsplash.com/photo-1550537687-c91072c4792d?auto=format&fit=crop&q=80
+background: /background.png
 title: 伊予絣計測支援システムの開発
 class: text-center
 transition: slide-left
