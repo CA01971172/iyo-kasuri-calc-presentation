@@ -261,10 +261,10 @@ mdc: true
           </tr>
         </thead>
         <tbody class="text-center">
-          <tr class="border-b border-white/5"><td>1</td><td>37羽</td><td>37羽</td></tr>
-          <tr class="border-b border-white/5"><td>2</td><td>5羽</td><td>5羽</td></tr>
+          <tr class="border-b border-white/5"><td>1</td><td>37羽 (38羽)</td><td>37羽</td></tr>
+          <tr class="border-b border-white/5"><td>2</td><td>6羽</td><td>5羽</td></tr>
           <tr class="border-b border-white/5"><td>3</td><td>15羽</td><td>15羽</td></tr>
-          <tr class="border-b border-white/5"><td>4</td><td>3羽</td><td>3羽</td></tr>
+          <tr class="border-b border-white/5"><td>4</td><td>2羽</td><td>3羽</td></tr>
         </tbody>
       </table>
       <div class="text-[8px] mt-2 opacity-80 leading-tight border-t border-white/10 pt-1">
