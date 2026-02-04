@@ -11,7 +11,7 @@ mdc: true
 ## 〜伝統工芸の保持者を支えるPWAツールの提案〜
 
 <div class="pt-12">
-  <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white op-10">
+  <span @click="$slide.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white op-10">
     卒業研究発表会 <carbon:arrow-right class="inline"/>
   </span>
 </div>
@@ -113,7 +113,7 @@ mdc: true
 特に祖母が挑戦したい幾何学模様において、最大の壁は「繰り返しの正確さ」の維持です。現在は方眼紙に図案を描き、そのマス目を一つずつ数えて計算していますが、規則的な模様ゆえに一箇所の数え間違いが全体の歪みとして目立ってしまいます。  
 
 高齢の職人にとって、小さな方眼紙のマス目を何百回と数え続けるのは、私たちが想像する以上に目と脳を消耗させる作業です。  
-また、方眼紙上の寸法を伊予絣特有の単位である「行(ゆき)・羽(わ)」へ換算する作業も重なり、脳の疲労による「うっかりミス」が数日後の織り工程で発覚するというリスクも常に抱えています。  
+また、方眼紙上の寸法を伊予絣特有の単位である「行(ゆき)・羽は)」へ換算する作業も重なり、脳の疲労による「うっかりミス」が数日後の織り工程で発覚するというリスクも常に抱えています。  
 
 【補足：本システムの提供目的】  
 「もし間違えていたら、これまでの努力が無駄になる」という不安は、創作のブレーキになります。本システムは、スマホで撮るだけでその「数え作業」と「計算」を瞬時に行い、職人が「これで大丈夫だ」と確信を持って次の工程に進める、セカンドオピニオンとしての役割を担います。  
@@ -156,7 +156,7 @@ mdc: true
 </div>
 
 <v-click>
-<div class="mt-4 p-4 bg-green-500/10 border-l-4 border-green-500 text-sm">
+<div class="mt-2 p-4 bg-green-500/10 border-l-4 border-green-500 text-sm">
 <b>こだわりの設計思想：</b><br>
 自動認識による「過剰な自動化」をあえて避け、職人が測りたい場所を確実に測れる
 <b>「セミオート」な使い心地</b>と、永続的な利用に耐えるシンプルな構成を両立。
@@ -170,7 +170,7 @@ mdc: true
 
 【技術的アプローチ：射影変換と計測】  
 システムの核となるのは、ホモグラフィ変換を用いた座標補正です。タブレットで図面を撮影した際、どうしても発生する「斜めの歪み」を、画面上の四隅を指定するだけで真上からの正確な図面データへと補正します。  
-計測に関しても、あえてOpenCVによる全自動認識は採用しませんでした。低スペックなタブレットでの動作安定性を重視し、かつ「熟練の職人が必要な箇所だけを確認したい」というニーズに応えるため、タップした任意の座標を「行(ゆき)・羽(わ)」という伊予絣の単位へ瞬時に換算するインターフェースにこだわりました。  
+計測に関しても、あえてOpenCVによる全自動認識は採用しませんでした。低スペックなタブレットでの動作安定性を重視し、かつ「熟練の職人が必要な箇所だけを確認したい」というニーズに応えるため、タップした任意の座標を「行(ゆき)・羽(は)」という伊予絣の単位へ瞬時に換算するインターフェースにこだわりました。  
 
 【運用と今後】  
 計測結果はPDFとして出力して現場で持ち歩くことができるほか、JSON形式での保存機能により、大規模な図面の計測も途中で中断して再開することが可能です。  
@@ -234,7 +234,107 @@ mdc: true
 
 ---
 
-# 5. 技術的工夫と実証評価
+# 5. 計測精度の検証
+### 職人の「正解」に対する算出結果の比較
+
+<div class="grid grid-cols-3 gap-2 items-start mt-2">
+  <div class="flex flex-col gap-1 items-center">
+    <span class="text-[9px] font-bold text-blue-400">職人の図面と手計算メモ</span>
+    <img src="/grandma_zumen.png" class="h-32 rounded border border-white/10 shadow-sm" />
+    <img src="/grandma_memo.png" class="h-32 rounded border border-white/10 shadow-sm" />
+    <span class="text-[8px] opacity-60">区間ごとの「差分」記録</span>
+  </div>
+
+  <div class="flex flex-col gap-1 items-center relative">
+    <span class="text-[9px] font-bold text-green-400">アプリの計測画面</span>
+    <img src="/app_result.png" class="h-66 rounded border border-white/10 mx-auto object-contain bg-black/10" />
+    <span class="text-[8px] opacity-60 text-center">起点からの「絶対値」表示</span>
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <span class="text-[9px] font-bold text-orange-400 text-center">精度照合表（差分換算）</span>
+    <div class="bg-orange-500/5 p-2 rounded border border-orange-500/20 shadow-lg">
+      <table class="text-[11px] w-full border-collapse">
+        <thead>
+          <tr class="border-b border-orange-500/30 font-bold text-center text-orange-300">
+            <td class="pb-1">区間</td><td class="pb-1">職人</td><td class="pb-1">アプリ</td>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <tr class="border-b border-white/5"><td>1</td><td>37羽</td><td>37羽</td></tr>
+          <tr class="border-b border-white/5"><td>2</td><td>5羽</td><td>5羽</td></tr>
+          <tr class="border-b border-white/5"><td>3</td><td>15羽</td><td>15羽</td></tr>
+          <tr class="border-b border-white/5"><td>4</td><td>3羽</td><td>3羽</td></tr>
+        </tbody>
+      </table>
+      <div class="text-[8px] mt-2 opacity-80 leading-tight border-t border-white/10 pt-1">
+        ※アプリ値を差分に換算して比較。<br>
+        職人の「帳尻合わせ（±2羽）」の範囲内で完全に一致。
+      </div>
+    </div>
+  </div>
+</div>
+
+<v-click>
+<div class="mt-3 p-2 bg-blue-500/10 border-l-4 border-blue-500 text-[11px] leading-snug">
+<b>検証結果：</b>
+記録形式は異なりますが、数値を揃えると極めて高い精度で一致。
+職人からも「現場の微調整で吸収できる誤差であり、計算の根拠として十分信頼できる」との評価を得ました。
+</div>
+</v-click>
+
+<!--
+【精度検証：現場での実用性】  
+「デジタルでどこまで正確に測れるのか」を検証しました。 スライド左側は祖母が手計算で書き記した「正解」のメモ、右側が本システムでの計測結果です。
+
+比較の結果、数値はほぼ一致しました。 実際、熟練の職人であっても、織る際の糸の張り具合などで「±2羽」程度の帳尻合わせは現場で日常的に行われます。  
+祖母からも「この精度があれば、自分の計算ミスを恐れずに自信を持って作業を始められる」という、職人視点での実用性に対する高い評価をいただくことができました。
+-->
+
+---
+
+# 6. 画像処理による歪み補正
+### 「真正面から撮れない」という現場の物理的制約を解決
+
+<div class="flex flex-col gap-4">
+
+  <div class="flex items-center gap-4">
+    <div class="w-24 text-[10px] font-bold leading-tight text-blue-400">パターン1：<br>ほぼ正面からの撮影</div>
+    <div class="flex-1 flex items-center justify-center gap-2 bg-black/5 p-2 rounded">
+      <img src="/front_raw.png" class="h-32 rounded border border-white/10" />
+      <carbon:arrow-right class="text-xl opacity-50" />
+      <img src="/front_processed.png" class="h-32 rounded border border-blue-500/50 shadow-lg shadow-blue-500/20" />
+    </div>
+  </div>
+
+  <div class="flex items-center gap-4">
+    <div class="w-24 text-[10px] font-bold leading-tight text-green-400">パターン2：<br>極端な斜めからの撮影</div>
+    <div class="flex-1 flex items-center justify-center gap-2 bg-black/5 p-2 rounded">
+      <img src="/slant_raw.png" class="h-32 rounded border border-white/10" />
+      <carbon:arrow-right class="text-xl opacity-50" />
+      <img src="/slant_processed.png" class="h-32 rounded border border-green-500/50 shadow-lg shadow-green-500/20" />
+    </div>
+  </div>
+
+</div>
+
+<div class="mt-6 p-3 bg-gray-500/10 border border-white/10 rounded text-[12px] leading-relaxed">
+<b>技術的必然性：射影変換（Homography Matrix）の適用</b><br>
+手持ち撮影において「完全に真正面から、かつ影を落とさず撮る」ことは物理的に不可能です。
+方眼紙の四隅から変換行列を算出し、画像を理想的な平面へ再投影することで、
+<b>「どのような角度から撮っても正確に測れる」</b>という現場での可用性を担保しました。
+</div>
+
+<!--
+【画像処理：物理的制約の解決】  
+次に、現場での実用性を高めるための「画像処理」の工夫です。 手描きの図面をタブレットで撮影する際、自分の影を入れずに「完全に真正面」から撮ることは、手持ち撮影では物理的に不可能です。
+
+そこで、数学的な座標補正である「射影変換」を実装しました。 スライド右側の例のように、照明の反射や自分の影を避けるためにあえて「斜め」から撮影した場合でも、システム側で正確な正方形のグリッドとして復元します。  
+ユーザーに「綺麗に撮る努力」を強いるのではなく、技術側で制約を解決することで、暗い織り場や狭い作業机でも迷わず使える道具を目指しました。
+-->
+---
+
+# 6. 技術的工夫と実証評価
 ### 現場の「使いやすさ」と「納得感」の両立
 
 <div class="grid grid-cols-2 gap-10">
@@ -289,7 +389,7 @@ mdc: true
 
 ---
 
-# 6. 今後の展望と結論
+# 7. 今後の展望と結論
 ### 伝統と技術の橋渡しとして
 
 <div class="grid grid-cols-2 gap-10">
