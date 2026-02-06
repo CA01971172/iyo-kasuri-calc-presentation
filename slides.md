@@ -488,8 +488,8 @@ class: text-center
   <div class="flex flex-col items-center">
     <p class="text-[10px] font-bold mb-2 opacity-80">📄 スライド資料を見る</p>
     <div class="bg-white p-1 rounded shadow-lg mb-2">
-        <a href="https://ca01971172.github.io/iyo-kasuri-calc-presentation/" target="_blank">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=70x70&data=https://ca01971172.github.io/iyo-kasuri-calc-presentation/" width="70" height="70" />
+        <a href="https://ca01971172.github.io/iyo-kasuri-calc-presentation/1" target="_blank">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=70x70&data=https://ca01971172.github.io/iyo-kasuri-calc-presentation/1" width="70" height="70" />
         </a>
     </div>
     <p class="text-[8px] opacity-50 font-mono">Generated with Slidev</p>
