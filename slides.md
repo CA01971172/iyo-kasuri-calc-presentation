@@ -473,15 +473,28 @@ class: text-center
 
 </div>
 
-<div class="mt-10 flex flex-col items-center">
-  <div class="bg-white p-1 rounded mb-2 shadow-lg">
-      <a href="https://ca01971172.github.io/iyo-kasuri-calc/" target="_blank">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://ca01971172.github.io/iyo-kasuri-calc/" width="80" height="80" />
-      </a>
+<div class="mt-8 flex justify-center gap-16">
+  
+  <div class="flex flex-col items-center">
+    <p class="text-[10px] font-bold mb-2 opacity-80">📱 実機デモを試す</p>
+    <div class="bg-white p-1 rounded shadow-lg mb-2">
+        <a href="https://ca01971172.github.io/iyo-kasuri-calc/" target="_blank">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=70x70&data=https://ca01971172.github.io/iyo-kasuri-calc/" width="70" height="70" />
+        </a>
+    </div>
+    <p class="text-[8px] opacity-50 font-mono">伊予絣 測定アプリ</p>
   </div>
-  <p class="text-[10px] opacity-60">実機デモURL:
-    <a href="https://ca01971172.github.io/iyo-kasuri-calc/" target="_blank">https://ca01971172.github.io/iyo-kasuri-calc/</a>
-  </p>
+
+  <div class="flex flex-col items-center">
+    <p class="text-[10px] font-bold mb-2 opacity-80">📄 スライド資料を見る</p>
+    <div class="bg-white p-1 rounded shadow-lg mb-2">
+        <a href="https://github.com/CA01971172/iyo-kasuri-calc-presentation/blob/main/slides.md" target="_blank">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=70x70&data=https://github.com/CA01971172/iyo-kasuri-calc-presentation/blob/main/slides.md" width="70" height="70" />
+        </a>
+    </div>
+    <p class="text-[8px] opacity-50 font-mono">Generated with Slidev</p>
+  </div>
+
 </div>
 
 <!--
